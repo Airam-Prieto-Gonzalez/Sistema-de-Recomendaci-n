@@ -9,11 +9,22 @@ def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
     max_score = float(lines[1])
     matrix = []
     for line in lines[2:]:
-        row = [float(x) if x != "-" else None for x in line.split()]
+        elements = line.split()
+        row = []
+        for element in elements:
+            if element != "-":
+                row.append(float(element))
+            else:
+                row.append(None)
+        # row = [float(x) if x != '-' else None for x in line.split()]
         matrix.append(row)
     return matrix, min_score, max_score
 
 
 def print_matrix(matrix):
     for row in matrix:
-        print(" ".join(f"{v:.2f}" if v is not None else "-" for v in row))
+        i = 0
+        for e in row:
+            row[i] = round(row[i], 2)
+            i += 1
+        print(row)
