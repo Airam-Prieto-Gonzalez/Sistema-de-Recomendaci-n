@@ -19,7 +19,7 @@ def fill_matrix(matrix, k, metric="pearson", method="simple"):
                     matrix[i][j] = predict_simple(
                         filled_matrix, similarity_matrix, i, j, neighbors
                     )
-                elif method == "mean":
+                elif method == "mean_difference":
                     matrix[i][j] = predict_mean_difference(
                         filled_matrix, similarity_matrix, i, j, neighbors
                     )
