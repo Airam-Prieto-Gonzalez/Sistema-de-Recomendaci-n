@@ -20,3 +20,11 @@ def pearson(matrix, user_u, user_v):
 
     denom = (denom_u**0.5) * (denom_v**0.5)
     return num / denom if denom != 0 else 0
+
+
+def cosine(matrix, user_u, user_v):
+    print("Cosine")
+
+
+def euclidean(matrix, user_u, user_v):
+    print("Euclidean")
