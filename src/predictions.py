@@ -14,7 +14,7 @@ def predict_simple(matrix, similarity_matrix, user_idx, item_idx, neighbors):
     return num / den if den != 0 else None
 
 
-def predict_mean(matrix, similarity_matrix, user_idx, item_idx, neighbors):
+def predict_mean_difference(matrix, similarity_matrix, user_idx, item_idx, neighbors):
     if not neighbors:
         return None
     user_ratings = [value for value in matrix[user_idx] if value is not None]
