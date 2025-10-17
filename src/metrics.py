@@ -18,8 +18,27 @@ def pearson(matrix, user_u, user_v):
 
 
 def cosine(matrix, user_u, user_v):
-    print("Cosine")
+    common_items = [
+        i
+        for i in range(len(matrix[user_u]))
+        if matrix[user_u][i] is not None and matrix[user_v][i] is not None
+    ]
+    if not common_items:
+        return 0.0
+    num = sum(matrix[user_u][i] * matrix[user_v][i] for i in common_items)
+    denom_u = sum((matrix[user_u][i] for i in common_items) ** 2)
+    denom_v = sum((matrix[user_v][i] for i in common_items) ** 2)
+    denom = (denom_u ** 0.5) * (denom_v ** 0.5)
+    return num / denom if denom != 0 else 0.0
 
 
 def euclidean(matrix, user_u, user_v):
-    print("Euclidean")
+    common_items = [
+        i
+        for i in range(len(matrix[user_u]))
+        if matrix[user_u][i] is not None and matrix[user_v][i] is not None
+    ]
+    if not common_items:
+        return 0.0
+    distance = (sum((matrix[user_u][i] - matrix[user_v][i] for i in common_items) ** 2)) ** 0.5
+    return distance
