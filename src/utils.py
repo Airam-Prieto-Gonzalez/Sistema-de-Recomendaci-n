@@ -27,3 +27,6 @@ def print_matrix(matrix):
             row[i] = round(row[i], 2)
             i += 1
         print(row)
+
+def print_user_and_neighbors(user, neighbors):
+    print(f"Neighbours selected of user: {user} are: {neighbors}")

@@ -1,3 +1,5 @@
+from utils import print_user_and_neighbors
+
 def predict_simple(matrix, similarity_matrix, user_idx, item_idx, neighbors):
     if not neighbors:
         return None
@@ -11,6 +13,7 @@ def predict_simple(matrix, similarity_matrix, user_idx, item_idx, neighbors):
         for n in neighbors
         if matrix[n][item_idx] is not None
     )
+    print_user_and_neighbors(user_idx, neighbors)
     return num / den if den != 0 else None
 
 
@@ -31,5 +34,6 @@ def predict_mean_difference(matrix, similarity_matrix, user_idx, item_idx, neigh
         if neighbor_ratings[item_idx] is not None:
             num += sim * (neighbor_ratings[item_idx] - neighbor_mean)
             denom += abs(sim)
-
+            
+    print_user_and_neighbors(user_idx, neighbors)
     return user_mean + num / denom if denom > 0 else user_mean
