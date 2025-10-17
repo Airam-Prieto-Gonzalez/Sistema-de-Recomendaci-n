@@ -21,7 +21,7 @@ git clone <>
 cd Sistema-de-Recomendaci-on
 python3 -m venv .venv
 source .venv/bin/activate
-pip insatall -r requeriments.txt
+pip install -r requeriments.txt
 ```
 
 Y aquí tenemos un ejemplo de ejecución del programa

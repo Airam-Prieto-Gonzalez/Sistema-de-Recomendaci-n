@@ -16,7 +16,6 @@ def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
                 row.append(float(element))
             else:
                 row.append(None)
-        # row = [float(x) if x != '-' else None for x in line.split()]
         matrix.append(row)
     return matrix, min_score, max_score
 
