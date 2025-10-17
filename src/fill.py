@@ -37,9 +37,9 @@ def create_similarity_matrix(matrix, metric):
                 if metric == "pearson":
                     similarity_matrix[i][j] = pearson(matrix, i, j)
                 elif metric == "cosine":
-                    similarity_matrix[i][j] = cosine(matrix[i], matrix[j])
+                    similarity_matrix[i][j] = cosine(matrix, i, j)
                 elif metric == "euclidean":
-                    similarity_matrix[i][j] = euclidean(matrix[i], matrix[j])
+                    similarity_matrix[i][j] = euclidean(matrix, i, j)
     return similarity_matrix
 
 

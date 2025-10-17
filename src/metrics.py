@@ -26,8 +26,8 @@ def cosine(matrix, user_u, user_v):
     if not common_items:
         return 0.0
     num = sum(matrix[user_u][i] * matrix[user_v][i] for i in common_items)
-    denom_u = sum((matrix[user_u][i] for i in common_items) ** 2)
-    denom_v = sum((matrix[user_v][i] for i in common_items) ** 2)
+    denom_u = sum(matrix[user_u][i]**2 for i in common_items)
+    denom_v = sum(matrix[user_v][i]**2 for i in common_items)
     denom = (denom_u ** 0.5) * (denom_v ** 0.5)
     return num / denom if denom != 0 else 0.0
 
@@ -40,5 +40,5 @@ def euclidean(matrix, user_u, user_v):
     ]
     if not common_items:
         return 0.0
-    distance = (sum((matrix[user_u][i] - matrix[user_v][i] for i in common_items) ** 2)) ** 0.5
+    distance = (sum((matrix[user_u][i] - matrix[user_v][i] for i in common_items)) ** 2) ** 0.5
     return distance

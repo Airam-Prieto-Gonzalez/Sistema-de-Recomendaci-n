@@ -29,7 +29,7 @@ def parse_args():
     parser.add_argument(
         "-m",
         "--metric",
-        choices=["pearson"],
+        choices=["pearson", "cosine", "euclidean"],
         default="pearson",
         help="Métrica de similitud (por defecto: pearson)",
     )
