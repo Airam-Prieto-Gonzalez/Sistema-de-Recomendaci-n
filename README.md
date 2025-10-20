@@ -15,6 +15,8 @@ El programa cuenta con las siguientes opciones:
   * Predicción simple
   * Diferencia con la media (`mean_difference`)
 
+* **Número de recomendaciones personalizadas**
+
 ---
 
 ## 📁 Estructura del proyecto
@@ -31,6 +33,7 @@ El programa cuenta con las siguientes opciones:
 │   ├── fill.py
 │   ├── metrics.py
 │   ├── predictions.py
+│   ├── recommendations.py
 │   ├── utils.py
 │   └── ...
 └── uv.lock                # Archivo de lock de uv
@@ -57,10 +60,39 @@ cd Sistema-de-Recomendacion
 
 2. Instalar **uv** si no está instalado:
 
+## Usando los instaladores oficiales
+
+**macOS / Linux:**
+
 ```bash
-python3 -m pip install --user uv
-uv --version
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+**Windows:**
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+### Usando PyPI o pipx
+
+**Con pip:**
+
+```bash
+pip install uv
+```
+
+**Con pipx:**
+
+```bash
+pipx install uv
+```
+
+> Si instalaste `uv` mediante los instaladores oficiales, puedes actualizarlo a la última versión con:
+>
+> ```bash
+> uv self update
+> ```
 
 3. Sincronizar dependencias y crear el entorno virtual:
 
@@ -78,13 +110,13 @@ uv sync --group dev   # opcional, instala herramientas de desarrollo como ruff
 Usando el entrypoint definido en `pyproject.toml`:
 
 ```bash
-uv run sistemas-recomendacion -f data/ejemplo.txt -m pearson -k 2 -t simple
+uv run sistemas-recomendacion -f data/ejemplo.txt -m pearson -k 2 -t simple -r 5
 ```
 
 O ejecutando directamente el script principal:
 
 ```bash
-uv run src/main.py -f data/ejemplo.txt -m pearson -k 2 -t simple
+uv run src/main.py -f data/ejemplo.txt -m pearson -k 2 -t simple -r 5
 ```
 
 ---
@@ -92,7 +124,7 @@ uv run src/main.py -f data/ejemplo.txt -m pearson -k 2 -t simple
 ## 🧩 Opciones de ejecución
 
 ```bash
-usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {simple,mean_difference}]
+usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {simple,mean_difference} [-r NUM_RECOMMENDATIONS]]
 ```
 
 * `-h` o `--help`: Muestra la ayuda del programa
@@ -101,6 +133,7 @@ usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {
   Opciones: `pearson`, `cosine`, `euclidean`
 * `-k NEIGHBORS` o `--neighbors NEIGHBORS`: Número de vecinos a considerar (por defecto: 2)
 * `-t {simple, mean_difference}` o `--type {simple, mean_difference}`: Tipo de predicción (por defecto: `simple`)
+* `-r NUM_RECOMMENDATIONS` o `--recommendations NUM_RECOMMENDATIONS`: Número de ítems recomendados (por defecto: 3)
 
 ---
 
@@ -111,4 +144,5 @@ usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {
 * `fill.py`: Funciones para completar la matriz de utilidad
 * `metrics.py`: Cálculo de similitudes entre usuarios
 * `predictions.py`: Predicción de valoraciones
+* `recommendations.py`: Funciones de recomendación de items
 * `utils.py`: Funciones auxiliares
