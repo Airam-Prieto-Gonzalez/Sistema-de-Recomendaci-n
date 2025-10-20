@@ -12,6 +12,7 @@ def parse_args():
       -m, --metric (str, optional): Métrica de similitud (por defecto: pearson).
       -k, --neighbors (int, optional): Número de vecinos a considerar (por defecto: 2).
       -t, --type (str, optional): Tipo de predicción (simple o mean_difference).
+      -r, --recommendations (int, optional): Número de ítems a recomendar (por defecto: 3).
 
     Returns
     -------
@@ -21,10 +22,7 @@ def parse_args():
         description="Sistema de recomendación basado en filtrado colaborativo"
     )
     parser.add_argument(
-        "-f",
-        "--file",
-        required=True,
-        help="Archivo de matriz de utilidad",
+        "-f", "--file", required=True, help="Archivo de matriz de utilidad"
     )
     parser.add_argument(
         "-m",
@@ -46,5 +44,12 @@ def parse_args():
         choices=["simple", "mean_difference"],
         default="simple",
         help="Tipo de predicción (simple o mean_difference)",
+    )
+    parser.add_argument(
+        "-r",
+        "--recommendations",
+        type=int,
+        default=3,
+        help="Número de ítems a recomendar al usuario (por defecto: 3)",
     )
     return parser.parse_args()

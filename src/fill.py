@@ -11,11 +11,17 @@ def fill_matrix(matrix, k, metric="pearson", method="simple"):
     filled_matrix = matrix.copy()
     neighbors_selected = []
     to_print_neightbors = []
+    print("\nVecinos seleccionados para cada usuario:")
+    for i in range(n_users):
+        neighbors = get_top_k_neighbors(similarity_matrix, i, k)
+        neighbors_selected.append(neighbors)
+        if [i, neighbors] not in to_print_neightbors:
+            to_print_neightbors.append([i, neighbors])
+            print(f"  Usuario {i}: {neighbors}")
     for i in range(n_users):
         for j in range(n_items):
             if matrix[i][j] is None:
-                neighbors = get_top_k_neighbors(similarity_matrix, i, k)
-                neighbors_selected.append(neighbors)
+                neighbors = neighbors_selected[i]
                 if method == "simple":
                     matrix[i][j] = predict_simple(
                         filled_matrix, similarity_matrix, i, j, neighbors
@@ -26,12 +32,7 @@ def fill_matrix(matrix, k, metric="pearson", method="simple"):
                     )
                 else:
                     pass
-                if [i, neighbors] not in to_print_neightbors:
-                    to_print_neightbors.append([i, neighbors])
-                    print(f"Neighbours selected of user: {i} are: {neighbors}")
-                else:
-                    pass
-    return filled_matrix, similarity_matrix, neighbors_selected
+    return filled_matrix, similarity_matrix
 
 
 def create_similarity_matrix(matrix, metric):

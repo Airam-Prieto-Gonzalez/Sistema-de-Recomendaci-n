@@ -1,9 +1,8 @@
-from typing import List, Tuple
 from tabulate import tabulate
 
 
-def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
-    with open(file_path, "r") as f:
+def read_matrix(file_path: str) -> tuple[list[list[float]], float, float]:
+    with open(file_path) as f:
         lines = [line.strip() for line in f.readlines() if line.strip()]
 
     min_score = float(lines[0])
@@ -22,9 +21,29 @@ def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
 
 
 def print_matrix(matrix):
-    for row in matrix:
-        rounded = [round(float(e), 2) for e in row if e is not None]
-        print(rounded)
+    """
+    Imprime la matriz de utilidad en formato de tabla, redondeada a 2 decimales.
+    Los valores None se muestran como '-'.
+    """
+    n_users = len(matrix)
+    n_items = len(matrix[0]) if matrix else 0
+
+    headers = [f"Ítem {i}" for i in range(n_items)]
+    table = []
+
+    for _i, row in enumerate(matrix):
+        formatted_row = [round(float(e), 2) if e is not None else "-" for e in row]
+        table.append(formatted_row)
+
+    print("\nMatriz de utilidad completada:")
+    print(
+        tabulate(
+            table,
+            headers=headers,
+            showindex=[f"Usuario {i}" for i in range(n_users)],
+            tablefmt="grid",
+        )
+    )
 
 
 def print_similarity_table(sim_matrix, metric):
