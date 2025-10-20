@@ -1,4 +1,5 @@
 from tabulate import tabulate
+from termcolor import colored
 
 
 def read_matrix(file_path: str) -> tuple[list[list[float]], float, float]:
@@ -20,21 +21,24 @@ def read_matrix(file_path: str) -> tuple[list[list[float]], float, float]:
     return matrix, min_score, max_score
 
 
-def print_matrix(matrix):
+def print_matrix(original_matrix, filled_matrix):
     """
-    Imprime la matriz de utilidad en formato de tabla, redondeada a 2 decimales.
-    Los valores None se muestran como '-'.
+    Imprime la matriz de utilidad completada en forma de tabla usando tabulate.
+    Los valores predichos (originalmente '-') se muestran en rojo.
     """
-    n_users = len(matrix)
-    n_items = len(matrix[0]) if matrix else 0
-
-    headers = [f"Ítem {i}" for i in range(n_items)]
+    n_users = len(filled_matrix)
+    n_items = len(filled_matrix[0])
+    headers = [f"Ítem {j}" for j in range(n_items)]
     table = []
-
-    for _i, row in enumerate(matrix):
-        formatted_row = [round(float(e), 2) if e is not None else "-" for e in row]
-        table.append(formatted_row)
-
+    for i in range(n_users):
+        row = []
+        for j in range(n_items):
+            value = round(filled_matrix[i][j], 2)
+            if original_matrix[i][j] is None:
+                row.append(colored(f"{value}", "red", attrs=["bold"]))
+            else:
+                row.append(f"{value}")
+        table.append(row)
     print("\nMatriz de utilidad completada:")
     print(
         tabulate(
