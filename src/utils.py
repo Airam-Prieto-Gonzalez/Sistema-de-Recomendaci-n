@@ -23,7 +23,7 @@ def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
 
 def print_matrix(matrix):
     for row in matrix:
-        rounded = [round(float(e), 2) for e in row]
+        rounded = [round(float(e), 2) for e in row if e is not None]
         print(rounded)
 
 
