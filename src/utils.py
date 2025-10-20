@@ -22,11 +22,9 @@ def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
 
 def print_matrix(matrix):
     for row in matrix:
-        i = 0
-        for e in row:
-            row[i] = round(row[i], 2)
-            i += 1
-        print(row)
+        rounded = [round(float(e), 2) for e in row]
+        print(rounded)
+
 
 def print_user_and_neighbors(user, neighbors):
     print(f"Neighbours selected of user: {user} are: {neighbors}")

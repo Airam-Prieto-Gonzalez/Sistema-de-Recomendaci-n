@@ -1,0 +1,27 @@
+[project]
+name = "sistemas-recomendacion"
+version = "0.1.0"
+description = "Sistema de recomendación basado en filtrado colaborativo"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = ["numpy>=2.3.4"]
+
+[dependency-groups]
+dev = ["ruff>=0.14.1"]
+
+[tool.uv]
+package = true
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[project.scripts]
+sistemas-recomendacion = "main:main"
+
+[tool.ruff.lint]
+extend-select = ["E", "W", "F", "I", "B", "C4", "UP", "D"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
