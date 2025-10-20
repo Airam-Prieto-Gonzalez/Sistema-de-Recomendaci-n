@@ -10,6 +10,7 @@ def fill_matrix(matrix, k, metric="pearson", method="simple"):
     n_items = len(matrix[0])
     filled_matrix = matrix.copy()
     neighbors_selected = []
+    to_print_neightbors = []
     for i in range(n_users):
         for j in range(n_items):
             if matrix[i][j] is None:
@@ -23,6 +24,11 @@ def fill_matrix(matrix, k, metric="pearson", method="simple"):
                     matrix[i][j] = predict_mean_difference(
                         filled_matrix, similarity_matrix, i, j, neighbors
                     )
+                else:
+                    pass
+                if [i, neighbors] not in to_print_neightbors:
+                    to_print_neightbors.append([i, neighbors])
+                    print(f"Neighbours selected of user: {i} are: {neighbors}")
                 else:
                     pass
     return filled_matrix, similarity_matrix, neighbors_selected
