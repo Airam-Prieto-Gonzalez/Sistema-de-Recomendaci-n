@@ -1,6 +1,6 @@
 from cli import parse_args
 from fill import fill_matrix
-from utils import print_matrix, read_matrix
+from utils import print_matrix, read_matrix, print_similarity_table
 
 
 def main():
@@ -15,8 +15,7 @@ def main():
     print("\nMatriz de utilidad completada:")
     print_matrix(filled_matrix)
 
-    print("\nMatriz de similitudes:")
-    print_matrix(sim_matrix)
+    print_similarity_table(sim_matrix, args.metric)
 
 
 if __name__ == "__main__":

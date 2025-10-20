@@ -1,6 +1,3 @@
-from utils import print_user_and_neighbors
-
-
 def predict_simple(matrix, similarity_matrix, user_idx, item_idx, neighbors):
     if not neighbors:
         return None

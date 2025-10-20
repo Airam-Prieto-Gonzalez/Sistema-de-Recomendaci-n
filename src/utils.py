@@ -1,4 +1,5 @@
 from typing import List, Tuple
+from tabulate import tabulate
 
 
 def read_matrix(file_path: str) -> Tuple[List[List[float]], float, float]:
@@ -26,5 +27,22 @@ def print_matrix(matrix):
         print(rounded)
 
 
-def print_user_and_neighbors(user, neighbors):
-    print(f"Neighbours selected of user: {user} are: {neighbors}")
+def print_similarity_table(sim_matrix, metric):
+    """
+    Imprime la matriz de similitud como tabla, con encabezados Usuario 0, Usuario 1, etc.
+    """
+    n = len(sim_matrix)
+    headers = [f"Usuario {i}" for i in range(n)]
+    table = []
+    for i, row in enumerate(sim_matrix):
+        rounded_row = [round(value, 2) for value in row]
+        table.append(rounded_row)
+    print(f"\nTabla de similitudes entre usuarios según la métrica {metric}:")
+    print(
+        tabulate(
+            table,
+            headers=headers,
+            showindex=[f"Usuario {i}" for i in range(n)],
+            tablefmt="grid",
+        )
+    )
