@@ -19,12 +19,12 @@ El programa cuenta con las siguientes opciones:
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 .
 ├── data/                  # Archivos de datos de ejemplo
-├── docs/                  # Documentación y slides
+├── docs/                  # Documentación, slides y el informe
 ├── pyproject.toml         # Configuración del proyecto y dependencias
 ├── README.md
 ├── src/                   # Código fuente
@@ -41,7 +41,7 @@ El programa cuenta con las siguientes opciones:
 
 ---
 
-## 🛠 Requisitos previos
+## Requisitos previos
 
 * Python **3.12+**
 * Git (opcional, para clonar el repositorio)
@@ -49,7 +49,7 @@ El programa cuenta con las siguientes opciones:
 
 ---
 
-## ⚡ Instalación y despliegue con uv
+## Instalación y despliegue con uv
 
 1. Clonar el repositorio:
 
@@ -105,7 +105,7 @@ uv sync --group dev   # opcional, instala herramientas de desarrollo como ruff
 
 ---
 
-## ▶️ Ejemplo de ejecución
+## Ejemplo de ejecución
 
 Usando el entrypoint definido en `pyproject.toml`:
 
@@ -121,7 +121,7 @@ uv run src/main.py -f data/ejemplo.txt -m pearson -k 2 -t simple -r 5
 
 ---
 
-## 🧩 Opciones de ejecución
+## Opciones de ejecución
 
 ```bash
 usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {simple,mean_difference} [-r NUM_RECOMMENDATIONS]]
@@ -137,7 +137,7 @@ usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {
 
 ---
 
-## 📄 Breve descripción de los scripts
+## Breve descripción de los scripts
 
 * `main.py`: Ejecuta la generación de la matriz de utilidad y la matriz de similitudes
 * `cli.py`: Interfaz de línea de comandos
@@ -145,4 +145,10 @@ usage: main.py [-h] -f FILE [-m {pearson,cosine,euclidean}] [-k NEIGHBORS] [-t {
 * `metrics.py`: Cálculo de similitudes entre usuarios
 * `predictions.py`: Predicción de valoraciones
 * `recommendations.py`: Funciones de recomendación de items
-* `utils.py`: Funciones auxiliares
+* `utils.py`: Funciones auxiliares de print
+
+---
+
+## Informe con las conclusiones
+
+Dentro del directorio docs se puede encontrar el informe en PDF describiendo el análisis realizado en varios ejemplos y las conclusiones extraídas.
