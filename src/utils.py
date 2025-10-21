@@ -33,11 +33,15 @@ def print_matrix(original_matrix, filled_matrix):
     for i in range(n_users):
         row = []
         for j in range(n_items):
-            value = round(filled_matrix[i][j], 2)
-            if original_matrix[i][j] is None:
-                row.append(colored(f"{value}", "red", attrs=["bold"]))
+            value = filled_matrix[i][j]
+            if value is None:
+                colored_value = colored("-", "red", attrs=["bold"])
             else:
-                row.append(f"{value}")
+                if original_matrix[i][j] is None:
+                    colored_value = colored(f"{round(value, 2)}", "red", attrs=["bold"])
+                else:
+                    colored_value = f"{round(value, 2)}"
+            row.append(colored_value)
         table.append(row)
     print("\nMatriz de utilidad completada:")
     print(

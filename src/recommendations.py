@@ -2,7 +2,7 @@ def recommend_items(filled_matrix, n_recommendations=3):
     recommendations = {}
     for i, row in enumerate(filled_matrix):
         sorted_items = sorted(
-            [(j, score) for j, score in enumerate(row)],
+            [(j, score) for j, score in enumerate(row) if score is not None],
             key=lambda x: x[1],
             reverse=True,
         )
