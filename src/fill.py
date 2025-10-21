@@ -51,6 +51,7 @@ def create_similarity_matrix(matrix, metric):
 
 
 def get_top_k_neighbors(similarity_matrix, user_idx, k):
-    sims = similarity_matrix[user_idx]
+    sims = similarity_matrix[user_idx].copy()
+    sims[user_idx] = -np.inf
     neighbors = np.argsort(sims)[::-1][:k]
     return neighbors.tolist()
